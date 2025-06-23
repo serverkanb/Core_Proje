@@ -1,0 +1,44 @@
+﻿@using EntityLayer.Concrete
+@model List<Contact>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+    CheckBoxHiddenInputRenderMode count = 0;
+}
+
+<h2>İletişim Listesi</h2>
+<a href="/Contact/AddContact" class="btn btn-success">Yeni Contact Ekle</a>
+<br />
+<br />
+<div class="table-responsive">
+    <br />
+
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Başlık</th>
+            <th>Açıklama</th>
+            <th>Mail</th>
+            <th>Telefon</th>
+            <th>İşlemler</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.Mail</td>
+                <td>@item.PhoneNumber</td>
+                <td>
+                    <a href="/Contact/EditContact/@item.ContactId" class="btn btn-warning">Güncelle</a>
+                    <a href="/Contact/DeleteContact/@item.ContactId" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <br />
+</div>
+

@@ -1,0 +1,49 @@
+﻿@using EntityLayer.Concrete
+@model List<Experience>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+    int count = 0;
+}
+
+<h1>Deneyim Listeleme Sayfası</h1>
+
+<br />
+<a href="/Experience/AddExperience" class="btn btn-success">Yeni Deneyim Ekle</a>
+<br />
+<br />
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Deneyim</th>
+            <th>Açıklama</th>
+            <th>Tarih</th>
+            <th>Resim</th>
+            <th>İşlemler</th>
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Date</td>
+                <td>@item.ImageUrl</td>
+                <td>
+                    <a href="/Experience/DeleteExperience/@item.ExperienceId" class="btn btn-danger">Sil</a>
+                    <a href="/Experience/EditExperience/@item.ExperienceId" class="btn btn-info">Güncelle</a>
+                </td>
+            </tr>
+
+
+
+        }
+
+
+    </table>
+</div>

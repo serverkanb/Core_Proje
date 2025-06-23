@@ -1,0 +1,43 @@
+﻿@model List<Portfolio>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+    int count = 0;
+}
+
+<h2>Proje Listesi</h2>
+<a href="/Portfolio/AddPortfolio" class="btn btn-success">Yeni Portfolio Ekle</a>
+<br />
+<br />
+<div class="table-responsive">
+    <br />
+    <br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Ad</th>
+        <th>Proje URL</th>
+        <th>Resim 1</th>
+        <th>Resim 2</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.Name</td>
+            <td>@item.ProjectUrl</td>
+            <td>@item.ImageUrl</td>
+            <td>@item.ImageUrl2</td>
+            <td>
+                <a href="/Portfolio/EditPortfolio/@item.PortfolioId" class="btn btn-warning">Güncelle</a>
+                <a href="/Portfolio/DeletePortfolio/@item.PortfolioId" class="btn btn-danger">Sil</a>
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<br />
+</div>

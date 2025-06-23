@@ -1,0 +1,29 @@
+﻿@using EntityLayer.Concrete
+@model Experience
+@{
+    ViewData["Title"] = "EditExperience";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<h2>Deneyim Güncelleme Sayfası</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="ExperienceId" />
+
+    <label>Başlık</label>
+    <input type="text" asp-for="Name" class="form-control" />
+
+    <label>Açıklama</label>
+    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+
+    <label>Tarih</label>
+    <input type="text" asp-for="Date" class="form-control" />
+
+    <label>Resim URL</label>
+    <input type="text" asp-for="ImageUrl" class="form-control" />
+
+    <br />
+    <button type="submit" class="btn btn-warning">Güncelle</button>
+    <a href="/Experience/Index" class="btn btn-secondary">Geri Dön</a>
+</form>
+

@@ -1,0 +1,45 @@
+﻿@model List<Message>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+    int count = 0;
+}
+
+<h2>Mesaj Listesi</h2>
+<a href="/Message/AddMessage" class="btn btn-success">Yeni Message Ekle</a>
+<br />
+<br />
+<div class="table-responsive">
+    <br />
+    <br />
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Ad Soyad</th>
+            <th>Mail</th>
+            <th>İçerik</th>
+            <th>Tarih</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.Name</td>
+                <td>@item.Mail</td>
+                <td>@item.Content</td>
+                <td>@item.Date</td>
+                <td>@(item.Status.HasValue ? (item.Status.Value ? "Okundu" : "Okunmadı") : "Belirtilmemiş")</td>
+                <td>
+                    <a href="/Message/EditMessage/@item.MessageId" class="btn btn-warning">Güncelle</a>
+                    <a href="/Message/DeleteMessage/@item.MessageId" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <br />
+
+</div>

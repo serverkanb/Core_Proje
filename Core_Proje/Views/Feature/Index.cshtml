@@ -1,0 +1,43 @@
+﻿@model List<Feature>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+    int count = 0;
+}
+
+<h2>Özellik Listesi</h2>
+<a href="/Feature/AddFeature" class="btn btn-success">Yeni Feature Ekle</a>
+<br />
+<br />
+<div class="table-responsive">
+    <br />
+    <br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Header</th>
+        <th>Name</th>
+        <th>Title</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.Header</td>
+            <td>@item.Name</td>
+            <td>@item.Title</td>
+            <td>
+                <a href="/Feature/EditFeature/@item.FeatureId" class="btn btn-warning">Güncelle</a>
+                <a href="/Feature/DeleteFeature/@item.FeatureId" class="btn btn-danger">Sil</a>
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<br />
+
+</div>
+

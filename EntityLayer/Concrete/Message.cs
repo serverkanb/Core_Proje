@@ -15,7 +15,7 @@ namespace EntityLayer.Concrete
         public string Mail { get; set; }
 
         public string Content { get; set; }
-        public string Date { get; set; }
-        public bool Status { get; set; }
+        public string? Date { get; set; }
+        public bool? Status { get; set; }
     }
 }

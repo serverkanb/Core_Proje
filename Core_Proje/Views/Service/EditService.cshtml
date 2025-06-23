@@ -1,0 +1,23 @@
+﻿@model Service
+@{
+    ViewData["Title"] = "EditService";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<h2>Hizmet Güncelleme Sayfası</h2>
+<br />
+
+<form method="post">
+    <input type="hidden" asp-for="ServiceId" />
+
+    <label>Başlık</label>
+    <input type="text" asp-for="Title" class="form-control" />
+
+    <label>Resim URL</label>
+    <input type="text" asp-for="ImageUrl" class="form-control" />
+
+    <br />
+    <button type="submit" class="btn btn-warning">Güncelle</button>
+    <a href="/Service/Index" class="btn btn-secondary">Geri Dön</a>
+</form>
+

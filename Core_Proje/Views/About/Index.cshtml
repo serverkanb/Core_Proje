@@ -1,0 +1,50 @@
+﻿@using EntityLayer.Concrete
+@model List<About>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+    int count = 0;
+}
+
+<h2>Hakkında Listesi</h2><br />
+<br />
+<br />
+<br />
+
+<a href="/About/AddAbout" class="btn btn-success">Yeni Hakkında Ekle</a>
+<br />
+<br />
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Başlık</th>
+            <th>Açıklama</th>
+            <th>Yaş</th>
+            <th>Mail</th>
+            <th>Telefon</th>
+            <th>Adres</th>
+            <th>Resim</th>
+            <th>İşlemler</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.Age</td>
+                <td>@item.Mail</td>
+                <td>@item.Phone</td>
+                <td>@item.Address</td>
+                <td>@item.ImageUrl</td>
+                <td>
+                    <a href="/About/EditAbout/@item.AboutId" class="btn btn-warning">Güncelle</a>
+                    <a href="/About/DeleteAbout/@item.AboutId" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+</div>
