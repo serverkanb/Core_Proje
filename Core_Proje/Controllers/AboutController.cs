@@ -11,6 +11,10 @@ namespace Core_Proje.Controllers
 
         public IActionResult Index()
         {
+            //ViewBag.v1 = "Hakkımda";
+            //ViewBag.v2 = "Hakkımda Bilgileri";
+            //ViewBag.v3 = "Hakkımda Listeleme Sayfası";
+
             var values = _aboutManager.TGetList();
             return View(values);
         }
@@ -18,9 +22,9 @@ namespace Core_Proje.Controllers
         [HttpGet]
         public IActionResult AddAbout()
         {
-            ViewBag.v1 = "Hakkımda Ekleme";
-            ViewBag.v2 = "Hakkımda";
-            ViewBag.v3 = "Yeni Hakkımda Ekle";
+            //ViewBag.v1 = "Hakkımda Ekleme";
+            //ViewBag.v2 = "Hakkımda";
+            //ViewBag.v3 = "Yeni Hakkımda Ekle";
             return View();
         }
 
@@ -34,9 +38,9 @@ namespace Core_Proje.Controllers
         [HttpGet]
         public IActionResult EditAbout(int id)
         {
-            ViewBag.v1 = "Hakkımda Güncelleme";
-            ViewBag.v2 = "Hakkımda";
-            ViewBag.v3 = "Hakkımda Düzenle";
+            //ViewBag.v1 = "Hakkımda Güncelleme";
+            //ViewBag.v2 = "Hakkımda";
+            //ViewBag.v3 = "Hakkımda Düzenle";
             var value = _aboutManager.TGetById(id);
             return View(value);
         }

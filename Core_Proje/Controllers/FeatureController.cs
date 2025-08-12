@@ -11,6 +11,9 @@ namespace Core_Proje.Controllers
 
         public IActionResult Index()
         {
+            //ViewBag.v1 = "Özellikler";
+            //ViewBag.v2 = "Özellik Bilgileri";
+            //ViewBag.v3 = "Özellik Listeleme Sayfası";
             var values = _featureManager.TGetList();
             return View(values);
         }
@@ -18,9 +21,9 @@ namespace Core_Proje.Controllers
         [HttpGet]
         public IActionResult AddFeature()
         {
-            ViewBag.v1 = "Özellik Ekleme";
-            ViewBag.v2 = "Özellikler";
-            ViewBag.v3 = "Yeni Özellik Ekle";
+            //ViewBag.v1 = "Özellik Ekleme";
+            //ViewBag.v2 = "Özellikler";
+            //ViewBag.v3 = "Yeni Özellik Ekle";
             return View();
         }
 
@@ -34,9 +37,9 @@ namespace Core_Proje.Controllers
         [HttpGet]
         public IActionResult EditFeature(int id)
         {
-            ViewBag.v1 = "Özellik Güncelleme";
-            ViewBag.v2 = "Özellikler";
-            ViewBag.v3 = "Özellik Düzenle";
+            //ViewBag.v1 = "Özellik Güncelleme";
+            //ViewBag.v2 = "Özellikler";
+            //ViewBag.v3 = "Özellik Düzenle";
             var value = _featureManager.TGetById(id);
             return View(value);
         }

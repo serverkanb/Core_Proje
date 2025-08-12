@@ -11,6 +11,9 @@ namespace Core_Proje.Controllers
 
         public IActionResult Index()
         {
+            //ViewBag.v1 = "Mesajlar";
+            //ViewBag.v2 = "Mesaj Bilgileri";
+            //ViewBag.v3 = "Mesaj Listeleme Sayfası";
             var values = _messageManager.TGetList();
             return View(values);
         }
@@ -24,9 +27,9 @@ namespace Core_Proje.Controllers
         [HttpPost]
         public IActionResult AddMessage(Message message)
         {
-            ViewBag.v1 = "Mesaj Ekleme";
-            ViewBag.v2 = "Mesajlar";
-            ViewBag.v3 = "Yeni Mesaj Ekle";
+            //ViewBag.v1 = "Mesaj Ekleme";
+            //ViewBag.v2 = "Mesajlar";
+            //ViewBag.v3 = "Yeni Mesaj Ekle";
             _messageManager.TAdd(message);
             return RedirectToAction("Index");
         }
@@ -41,9 +44,9 @@ namespace Core_Proje.Controllers
         [HttpPost]
         public IActionResult EditMessage(Message message)
         {
-            ViewBag.v1 = "Mesaj Güncelleme";
-            ViewBag.v2 = "Mesajlar";
-            ViewBag.v3 = "Mesaj Düzenle";
+            //ViewBag.v1 = "Mesaj Güncelleme";
+            //ViewBag.v2 = "Mesajlar";
+            //ViewBag.v3 = "Mesaj Düzenle";
 
             _messageManager.TUpdate(message);
             return RedirectToAction("Index");

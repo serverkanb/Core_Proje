@@ -1,4 +1,6 @@
 ﻿using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete
 {
-    public class Context : DbContext
+    public class Context : IdentityDbContext<WriterUser,WriterRole,int>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,6 +27,11 @@ namespace DataAccessLayer.Concrete
         public DbSet<TestimOnial> TestimOnials { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
+      
+        public DbSet<TodoList> TodoLists { get; set; }
+        public DbSet<Test> Tests { get; set; }
+        public DbSet<Annoucement> Annoucements  { get; set; }
+        public DbSet<WriterMessage> WriterMessages { get; set; }
 
     }
 }

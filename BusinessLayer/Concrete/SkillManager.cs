@@ -38,6 +38,11 @@ namespace BusinessLayer.Concrete
            return _skillDal.GetList();
         }
 
+        public List<Skill> TGetListByFilter(string p)
+        {
+            throw new NotImplementedException();
+        }
+
         public void TUpdate(Skill t)
         {
             _skillDal.Update(t);

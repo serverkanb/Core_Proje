@@ -7,14 +7,18 @@
 }
 
 <h1>Yetenek Listeleme</h1>
+<br />
+<a href="/Skill/AddSkill" class="btn btn-success">Yeni Yetenek Ekle</a>
+<br />
+<br />
 
 <table class="table table-bordered">
     <tr>
         <th>#</th>
         <th>Başlık</th>
         <th>Oran</th>
-        <th>Sil</th>
-        <th>Düzenle</th>
+        <th>İşlemler</th>
+      
     </tr>
     @foreach (var item in Model)
     {
@@ -29,8 +33,4 @@
             </td>
         </tr>
     }
-    
-    <a href="/Skill/AddSkill" class="btn btn-success">Yeni Yetenek Ekle</a>
-
-
 </table>

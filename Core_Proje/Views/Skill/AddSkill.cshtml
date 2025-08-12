@@ -1,24 +1,24 @@
-﻿@using EntityLayer.Concrete
-@model Skill
+﻿@model EntityLayer.Concrete.Skill
 @{
     ViewData["Title"] = "AddSkill";
     Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
-<div class="card-heafer border-0">
-<h3>Yetenek Ekleme Sayfası</h3>
-</div>
 
-<br />
+<div class="card-header border-0">
+    <h3>Yeni Yetenek Ekleme Sayfası</h3>
+    <br />
+</div>
 
 <form class="form-control" method="post">
 
-    @Html.Label("Yetenek Başlığı")
+    <label>Yetenek Başlığı</label>
     <input type="text" name="Title" class="form-control" />
     <br />
+
     <label>Oran</label>
-    <input type="text" name="Title" class="form-control" />
+    <input type="text" name="Value" class="form-control" />
     <br />
-    <button type="button">Kaydet</button>
 
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <a href="/Skill/Index" class="btn btn-secondary">Geri Dön</a>
 </form>
-

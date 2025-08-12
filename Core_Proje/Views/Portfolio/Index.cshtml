@@ -1,43 +1,96 @@
 ﻿@model List<Portfolio>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Proje Listesi";
     Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
     int count = 0;
 }
 
-<h2>Proje Listesi</h2>
-<a href="/Portfolio/AddPortfolio" class="btn btn-success">Yeni Portfolio Ekle</a>
-<br />
-<br />
-<div class="table-responsive">
-    <br />
-    <br />
+<div class="card-header border-0">
+    <h3 class="mb-0">Proje Listesi</h3>
+</div>
+<div class="mb-3">
+    <a href="/Portfolio/AddPortfolio" class="btn btn-outline-success">Yeni Proje Ekle</a>
+</div>
 
-<table class="table table-bordered">
-    <tr>
-        <th>#</th>
-        <th>Ad</th>
-        <th>Proje URL</th>
-        <th>Resim 1</th>
-        <th>Resim 2</th>
-        <th>İşlemler</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        count++;
-        <tr>
-            <td>@count</td>
-            <td>@item.Name</td>
-            <td>@item.ProjectUrl</td>
-            <td>@item.ImageUrl</td>
-            <td>@item.ImageUrl2</td>
-            <td>
-                <a href="/Portfolio/EditPortfolio/@item.PortfolioId" class="btn btn-warning">Güncelle</a>
-                <a href="/Portfolio/DeletePortfolio/@item.PortfolioId" class="btn btn-danger">Sil</a>
-            </td>
-        </tr>
-    }
-</table>
-<br />
-<br />
+<div class="table-responsive" style="overflow-x:auto;">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Proje Adı</th>
+                <th>Proje URL</th>
+                <th>Görsel 1</th>
+                <th>Görsel 2</th>
+                <th>Platform</th>
+                <th>Fiyat</th>
+                <th>Durum</th>
+                <th>Görsel 3</th>
+                <th>Görsel 4</th>
+                <th>Görsel 5</th>
+                <th>Görsel 6</th>
+                <th>Tamamlanma Oranı</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@item.Name</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ProjectUrl))
+                    {
+                        <a href="@item.ProjectUrl" target="_blank">@item.ProjectUrl</a>
+                    }
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@item.ImageUrl" alt="Görsel 1" style="height:40px;" />
+                    }
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ImageUrl2))
+                    {
+                        <img src="@item.ImageUrl2" alt="Görsel 2" style="height:40px;" />
+                    }
+                </td>
+                <td>@item.Platform</td>
+                <td>@item.Price</td>
+                <td>@item.Status</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Image1))
+                    {
+                        <img src="@item.Image1" alt="Görsel 3" style="height:40px;" />
+                    }
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Image2))
+                    {
+                        <img src="@item.Image2" alt="Görsel 4" style="height:40px;" />
+                    }
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Image3))
+                    {
+                        <img src="@item.Image3" alt="Görsel 5" style="height:40px;" />
+                    }
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Image4))
+                    {
+                        <img src="@item.Image4" alt="Görsel 6" style="height:40px;" />
+                    }
+                </td>
+                <td>@item.Value</td>
+                <td>
+                    <a href="/Portfolio/EditPortfolio/@item.PortfolioId" class="btn btn-warning btn-sm">Güncelle</a>
+                    <a href="/Portfolio/DeletePortfolio/@item.PortfolioId" class="btn btn-danger btn-sm">Sil</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
 </div>

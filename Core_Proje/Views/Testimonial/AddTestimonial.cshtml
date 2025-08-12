@@ -1,0 +1,28 @@
+﻿
+@model TestimOnial
+@{
+    ViewData["Title"] = "AddTestimonial";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<h2>Yeni Referans Ekle</h2>
+
+<form method="post">
+    <label>Ad Soyad</label>
+    <input type="text" asp-for="ClientName" class="form-control" />
+
+    <label>Şirket</label>
+    <input type="text" asp-for="Company" class="form-control" />
+
+    <label>Unvan</label>
+    <input type="text" asp-for="Title" class="form-control" />
+
+    <label>Resim Url</label>
+    <input type="text" asp-for="ImageUrl" class="form-control" />
+
+    <br />
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <a href="/Testimonial/Index" class="btn btn-secondary">Geri Dön</a>
+</form>
+
+

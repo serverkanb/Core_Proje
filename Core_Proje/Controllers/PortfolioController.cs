@@ -14,6 +14,9 @@ namespace Core_Proje.Controllers
 
         public IActionResult Index()
         {
+            //ViewBag.v1 = "Portföyler";
+            //ViewBag.v2 = "Portföy Bilgileri";
+            //ViewBag.v3 = "Portföy Listeleme Sayfası";
             var values = _portfolioManager.TGetList();
             return View(values);
         }
@@ -21,9 +24,9 @@ namespace Core_Proje.Controllers
         [HttpGet]
         public IActionResult AddPortfolio()
         {
-            ViewBag.v1 = "Proje Listesi";
-            ViewBag.v2 = "Projelerim";
-            ViewBag.v3 = "Proje Ekleme";
+            //ViewBag.v1 = "Proje Listesi";
+            //ViewBag.v2 = "Projelerim";
+            //ViewBag.v3 = "Proje Ekleme";
             return View();
         }
 
@@ -46,16 +49,17 @@ namespace Core_Proje.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
+                return View(portfolio); // hata varsa tekrar formu göstermek için
             }
-                return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult EditPortfolio(int id)
         {
-            ViewBag.v1 = "Proje Listesi";
-            ViewBag.v2 = "Projelerim";
-            ViewBag.v3 = "Proje Güncelleme";
+            //ViewBag.v1 = "Proje Listesi";
+            //ViewBag.v2 = "Projelerim";
+            //ViewBag.v3 = "Proje Güncelleme";
             var value = _portfolioManager.TGetById(id);
             return View(value);
         }

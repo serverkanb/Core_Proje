@@ -11,6 +11,9 @@ namespace Core_Proje.Controllers
 
         public IActionResult Index()
         {
+            //ViewBag.v1 = "İletişim";
+            //ViewBag.v2 = "İletişim Bilgileri";
+            //ViewBag.v3 = "İletişim Listeleme Sayfası";
             var values = _contactManager.TGetList();
             return View(values);
         }
@@ -18,9 +21,9 @@ namespace Core_Proje.Controllers
         [HttpGet]
         public IActionResult AddContact()
         {
-            ViewBag.v1 = "İletişim Ekleme";
-            ViewBag.v2 = "İletişimler";
-            ViewBag.v3 = "Yeni İletişim Ekle";
+            //ViewBag.v1 = "İletişim Ekleme";
+            //ViewBag.v2 = "İletişimler";
+            //ViewBag.v3 = "Yeni İletişim Ekle";
             return View();
         }
 
@@ -34,9 +37,9 @@ namespace Core_Proje.Controllers
         [HttpGet]
         public IActionResult EditContact(int id)
         {
-            ViewBag.v1 = "İletişim Güncelleme";
-            ViewBag.v2 = "İletişimler";
-            ViewBag.v3 = "İletişim Düzenle";
+            //ViewBag.v1 = "İletişim Güncelleme";
+            //ViewBag.v2 = "İletişimler";
+            //ViewBag.v3 = "İletişim Düzenle";
             var value = _contactManager.TGetById(id);
             return View(value);
         }

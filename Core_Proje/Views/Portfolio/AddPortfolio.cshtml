@@ -11,35 +11,67 @@
 @using (Html.BeginForm("AddPortfolio", "Portfolio", FormMethod.Post))
 {
     <br />
-    @Html.Label("Proje Başlığı")
+
+    @Html.LabelFor(x => x.Name)
     @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.Name)
     <br />
 
-    <label>Görsel 1</label>
-    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.ImageUrl)
-    <br />
-
-    <label>Görsel 2</label>
-    @Html.TextBoxFor(x => x.ImageUrl2, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.ImageUrl2)
-    <br />
-
-    <label>Proje URL</label>
+    @Html.LabelFor(x => x.ProjectUrl)
     @Html.TextBoxFor(x => x.ProjectUrl, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.ProjectUrl)
     <br />
 
-    <label>Fiyat</label>
+    @Html.LabelFor(x => x.ImageUrl)
+    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.ImageUrl)
+    <br />
+
+    @Html.LabelFor(x => x.ImageUrl2)
+    @Html.TextBoxFor(x => x.ImageUrl2, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.ImageUrl2)
+    <br />
+
+    @Html.LabelFor(x => x.Image1)
+    @Html.TextBoxFor(x => x.Image1, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Image1)
+    <br />
+
+    @Html.LabelFor(x => x.Image2)
+    @Html.TextBoxFor(x => x.Image2, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Image2)
+    <br />
+
+    @Html.LabelFor(x => x.Image3)
+    @Html.TextBoxFor(x => x.Image3, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Image3)
+    <br />
+
+    @Html.LabelFor(x => x.Image4)
+    @Html.TextBoxFor(x => x.Image4, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Image4)
+    <br />
+
+    @Html.LabelFor(x => x.Platform)
+    @Html.TextBoxFor(x => x.Platform, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Platform)
+    <br />
+
+    @Html.LabelFor(x => x.Price)
     @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.Price)
     <br />
 
-    <label>Tamamlanma Oranı</label>
+    @Html.LabelFor(x => x.Status)
+    @Html.TextBoxFor(x => x.Status, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Status)
+    <br />
+
+    @Html.LabelFor(x => x.Value)
     @Html.TextBoxFor(x => x.Value, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.Value)
     <br />
 
     <button class="btn btn-info">Kaydet</button>
+    <a href="/Portfolio/Index" class="btn btn-secondary">Geri Dön</a>
 }

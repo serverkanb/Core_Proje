@@ -12,6 +12,9 @@ namespace Core_Proje.Controllers
 
         public IActionResult Index()
         {
+            //ViewBag.v1 = "Hizmetler";
+            //ViewBag.v2 = "Hizmet Bilgileri";
+            //ViewBag.v3 = "Hizmet Listeleme Sayfası";
             var values = _serviceManager.TGetList();
             return View(values);
         }
@@ -19,18 +22,18 @@ namespace Core_Proje.Controllers
         [HttpGet]
         public IActionResult AddService()
         {
-            ViewBag.v1 = "Hizmet Ekleme";
-            ViewBag.v2 = "Hizmetler";
-            ViewBag.v3 = "Yeni Hizmet Ekle";
+            //ViewBag.v1 = "Hizmet Ekleme";
+            //ViewBag.v2 = "Hizmetler";
+            //ViewBag.v3 = "Yeni Hizmet Ekle";
             return View();
         }
 
         [HttpPost]
         public IActionResult AddService(Service service)
         {
-            ViewBag.v1 = "Hizmet Güncelleme";
-            ViewBag.v2 = "Hizmetler";
-            ViewBag.v3 = "Hizmet Düzenle";
+            //ViewBag.v1 = "Hizmet Güncelleme";
+            //ViewBag.v2 = "Hizmetler";
+            //ViewBag.v3 = "Hizmet Düzenle";
             _serviceManager.TAdd(service);
             return RedirectToAction("Index");
         }
