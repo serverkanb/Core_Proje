@@ -40,12 +40,12 @@ namespace BusinessLayer.Concrete
 
         public List<WriterUser> TGetListByFilter(string p)
         {
-            throw new NotImplementedException();
+            return _writerUserDal.GetbyFilter(x => x.Name.Contains(p));
         }
 
         public void TUpdate(WriterUser t)
         {
-            throw new NotImplementedException();
+            _writerUserDal.Update(t);
         }
     }
 }

@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public List<TodoList> TGetListByFilter(string p)
         {
-            throw new NotImplementedException();
+            return _todoListDal.GetbyFilter(x => x.Content.Contains(p));
         }
 
         public void TUpdate(TodoList t)
