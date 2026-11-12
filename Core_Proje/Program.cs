@@ -6,7 +6,9 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
- 
+
+Context.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<Context>();
 
 builder.Services.AddScoped<IWriterMessageDal, EfWriterMessageDal>();
