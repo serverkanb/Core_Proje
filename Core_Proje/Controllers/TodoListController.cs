@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
@@ -5,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Core_Proje.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TodoListController : Controller
     {
         TodoListManager _todoListManager = new TodoListManager(new EfTodoListDal());

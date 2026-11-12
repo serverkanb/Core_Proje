@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using Microsoft.AspNetCore.Authorization;
+using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Newtonsoft.Json;
 
 namespace My_Core_Proje_.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class Experience2Controller : Controller
     {
         ExperienceManager _experienceManager = new ExperienceManager(new EfExperienceDal());

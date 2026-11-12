@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using Microsoft.AspNetCore.Authorization;
+using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using DataAccessLayer.Migrations;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Core_Proje.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PortfolioController : Controller
     {
         PortfolioManager _portfolioManager = new PortfolioManager(new EfPortfolioDal());

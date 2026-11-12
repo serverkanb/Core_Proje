@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
@@ -5,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Core_Proje.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AnnoucementController : Controller
     {
         AnnoucementManager _annoucementManager = new AnnoucementManager(new EfAnnoucementDal());

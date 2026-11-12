@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
@@ -7,6 +8,7 @@ using Newtonsoft.Json;
 
 namespace My_Core_Proje_.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class WriterUserController : Controller
     {
         WriterUserManager userManager = new WriterUserManager(new EfWriterUserDal());

@@ -33,13 +33,13 @@ namespace Core_Proje.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult SendMessage(Message p)
+        public IActionResult SendMessage(Message p)
         {
-            MessageManager messageManager = new MessageManager(new EfMessageDal());
             p.Date = DateTime.Now.ToString("dd.MM.yyyy");
             p.Status = false;
             messageManager.TAdd(p);
-            return PartialView();
+            // Formun tek başına (stilsiz) gösterilmesi yerine siteye geri dön
+            return Redirect("/Default/Index#contact");
         }
     }
 }
