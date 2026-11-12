@@ -1,11 +1,13 @@
 ﻿using Core_Proje.Areas.Writer.Models;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Core_Proje.Areas.Writer.Controllers
 {
     [Area("Writer")]
+    [Authorize]
     [Route("Writer/[controller]/[action]")]
     public class ProfileController : Controller
     {
@@ -34,19 +36,33 @@ namespace Core_Proje.Areas.Writer.Controllers
                 var extension = Path.GetExtension(p.Picture.FileName);
                 var imagename = Guid.NewGuid() + extension;
                 var savelocation = resource + "/wwwroot/userimage/" + imagename;
-                var stream = new FileStream(savelocation, FileMode.Create);
-                await p.Picture.CopyToAsync(stream);
+                using (var stream = new FileStream(savelocation, FileMode.Create))
+                {
+                    await p.Picture.CopyToAsync(stream);
+                }
                 user.ImageUrl = imagename;
             }
             user.Name = p.Name;
             user.Surname = p.Surname;
-            user.PasswordHash = _userManeger.PasswordHasher.HashPassword(user,p.Password);
+            if (!string.IsNullOrEmpty(p.Password))
+            {
+                if (p.Password != p.PasswordConfirm)
+                {
+                    ModelState.AddModelError("", "Şifreler uyuşmuyor");
+                    return View(p);
+                }
+                user.PasswordHash = _userManeger.PasswordHasher.HashPassword(user, p.Password);
+            }
             var result = await _userManeger.UpdateAsync(user);
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Default");   
             }
-            return View(user);
+            foreach (var item in result.Errors)
+            {
+                ModelState.AddModelError("", item.Description);
+            }
+            return View(p);
         }
     }
 }

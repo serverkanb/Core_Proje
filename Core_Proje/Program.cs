@@ -4,10 +4,11 @@ using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
-using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
  
+builder.Services.AddDbContext<Context>();
+
 builder.Services.AddScoped<IWriterMessageDal, EfWriterMessageDal>();
 builder.Services.AddScoped<IWriterMessageService, WriterMessageManager>();
 
@@ -15,13 +16,14 @@ builder.Services.AddIdentity<WriterUser, WriterRole>().AddEntityFrameworkStores<
 
 builder.Services.AddMvc();
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
-{
-    x.LoginPath = "/AdminLoginController/Index/";
-});
  
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Writer/Login/Index/";
+});
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

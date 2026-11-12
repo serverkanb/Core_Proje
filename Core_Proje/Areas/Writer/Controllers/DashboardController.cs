@@ -30,8 +30,15 @@ namespace Core_Proje.Areas.Writer.Controllers
             //Weatherapi
             string api = "682cce73042cf7c8adc013d65c5f9b08";
             string connection = "https://api.openweathermap.org/data/2.5/weather?q=Ankara&mode=xml&lang=tr&units=metric&appid=" + api; ;
-            XDocument document = XDocument.Load(connection);
-            ViewBag.v5 = document.Descendants("temperature").ElementAt(0).Attribute("value").Value;
+            try
+            {
+                XDocument document = XDocument.Load(connection);
+                ViewBag.v5 = document.Descendants("temperature").ElementAt(0).Attribute("value").Value;
+            }
+            catch
+            {
+                ViewBag.v5 = "-";
+            }
 
             //Statistics
             Context context = new Context();

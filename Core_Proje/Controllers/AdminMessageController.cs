@@ -1,4 +1,4 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
@@ -9,9 +9,9 @@ namespace My_Core_Proje_.Controllers
     public class AdminMessageController : Controller
     {
        
-        private readonly WriterMessageManager _writerMessageManager;
+        private readonly IWriterMessageService _writerMessageManager;
 
-        public AdminMessageController(WriterMessageManager messageManager)
+        public AdminMessageController(IWriterMessageService messageManager)
         {
             _writerMessageManager = messageManager;
         }

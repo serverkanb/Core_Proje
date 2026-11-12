@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Core_Proje.Areas.Writer.Controllers
 {
+    [Area("Writer")]
+    [Authorize]
     public class DefaultController : Controller
     {
         AnnoucementManager _annoucementManager = new AnnoucementManager(new EfAnnoucementDal());
-        [Area("Writer")]
-        [Authorize]
         public IActionResult Index()
         {
             var values = _annoucementManager.TGetList();
@@ -19,7 +19,7 @@ namespace Core_Proje.Areas.Writer.Controllers
         public IActionResult AnnoucementDetails(int id)
         {
             var values = _annoucementManager.TGetById(id);
-            return View();
+            return View(values);
         }
     }
 }
