@@ -20,8 +20,8 @@ namespace My_Core_Proje_.Controllers
         {
             string p;
             p = "test@gmail.com";
-            var values = _writerMessageManager.TGetListSenderMessage(p);
-            return View();
+            var values = _writerMessageManager.TGetListReceiverMessage(p);
+            return View(values);
         }
         public IActionResult SenderMessageList()
         {

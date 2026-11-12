@@ -22,6 +22,7 @@ namespace My_Core_Proje_.Controllers
         [HttpPost]
         public IActionResult AddExperience(Experience p)
         {
+            p.ImageUrl ??= "";
             _experienceManager.TAdd(p);
             var values = JsonConvert.SerializeObject(p);
             return Json(values);    
@@ -37,14 +38,25 @@ namespace My_Core_Proje_.Controllers
         public IActionResult UpdateExperience(Experience p)
         {
             var value = _experienceManager.TGetById(p.ExperienceId);
+            if (value == null)
+            {
+                return NotFound();
+            }
+            if (!string.IsNullOrEmpty(p.Name)) value.Name = p.Name;
+            if (!string.IsNullOrEmpty(p.Date)) value.Date = p.Date;
             _experienceManager.TUpdate(value);
             var values2 = JsonConvert.SerializeObject(p);
             return Json(values2);
         }
         
-        public IActionResult DeleteExperienece(int id)
+        [HttpPost]
+        public IActionResult DeleteExperience(int id)
         {
             var value = _experienceManager.TGetById(id);
+            if (value == null)
+            {
+                return NotFound();
+            }
             _experienceManager.TDelete(value);
             return NoContent();
         }

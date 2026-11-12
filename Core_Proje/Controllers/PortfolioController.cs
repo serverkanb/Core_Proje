@@ -69,6 +69,14 @@ namespace Core_Proje.Controllers
         {
             PortfolioValidator validations = new PortfolioValidator();
             ValidationResult result = validations.Validate(portfolio);
+            if (!result.IsValid)
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(portfolio);
+            }
             _portfolioManager.TUpdate(portfolio);
             return RedirectToAction("Index");
         }
