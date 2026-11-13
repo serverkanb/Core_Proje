@@ -213,6 +213,22 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
+                    <a class="nav-link" href="/Annoucement/Index/">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-bullhorn"></i>
+                        </span>
+                        <span class="menu-title">Duyurular</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="/WriterUser/Index/">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-account-multiple"></i>
+                        </span>
+                        <span class="menu-title">Yazarlar</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
                     <a class="nav-link" href="/Experience2/Index/">
                         <span class="menu-icon">
                             <i class="mdi mdi-car"></i>
@@ -406,7 +422,7 @@
                             <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                                 <div class="navbar-profile">
                                     <img class="img-xs rounded-circle" src="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/images/faces/face15.jpg" alt="">
-                                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                                    <p class="mb-0 d-none d-sm-block navbar-profile-name">@User.Identity?.Name</p>
                                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                                 </div>
                             </a>
@@ -424,14 +440,14 @@
                                     </div>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item">
+                                <a class="dropdown-item preview-item" href="/AdminLogin/LogOut/">
                                     <div class="preview-thumbnail">
                                         <div class="preview-icon bg-dark rounded-circle">
                                             <i class="mdi mdi-logout text-danger"></i>
                                         </div>
                                     </div>
                                     <div class="preview-item-content">
-                                        <p class="preview-subject mb-1">Log out</p>
+                                        <p class="preview-subject mb-1">Çıkış Yap</p>
                                     </div>
                                 </a>
                                 <div class="dropdown-divider"></div>
@@ -486,6 +502,7 @@
     <script src="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
+    @await RenderSectionAsync("scripts", required: false)
     <!-- End custom js for this page -->
 </body>
 </html>

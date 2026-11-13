@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public List<Skill> TGetListByFilter(string p)
         {
-            throw new NotImplementedException();
+            return _skillDal.GetbyFilter(x => x.Title.Contains(p));
         }
 
         public void TUpdate(Skill t)

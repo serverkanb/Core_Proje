@@ -1,0 +1,37 @@
+@using EntityLayer.Concrete
+@model List<Annoucement>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+    int count = 0;
+}
+
+<h1>Duyuru Listeleme</h1>
+<br />
+<a href="/Annoucement/AddAnnoucement" class="btn btn-success">Yeni Duyuru Ekle</a>
+<br />
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Başlık</th>
+        <th>Tarih</th>
+        <th>Durum</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.Title</td>
+            <td>@item.Date</td>
+            <td>@item.Status</td>
+            <td>
+                <a href="/Annoucement/DeleteAnnoucement/@item.AnnoucementId" class="btn btn-danger">Sil</a>
+                <a href="/Annoucement/EditAnnoucement/@item.AnnoucementId" class="btn btn-info">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>

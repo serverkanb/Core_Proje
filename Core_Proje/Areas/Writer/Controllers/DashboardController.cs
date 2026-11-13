@@ -15,10 +15,12 @@ namespace Core_Proje.Areas.Writer.Controllers
     public class DashboardController : Controller
     {
         private readonly UserManager<WriterUser> _userManeger;
+        private readonly IConfiguration _configuration;
 
-        public DashboardController(UserManager<WriterUser> userManeger)
+        public DashboardController(UserManager<WriterUser> userManeger, IConfiguration configuration)
         {
             _userManeger = userManeger;
+            _configuration = configuration;
         }
 
         public async Task<IActionResult> Index()
@@ -28,10 +30,23 @@ namespace Core_Proje.Areas.Writer.Controllers
             ViewBag.v = value.Name;
 
             //Weatherapi
-            string api = "682cce73042cf7c8adc013d65c5f9b08";
-            string connection = "https://api.openweathermap.org/data/2.5/weather?q=Ankara&mode=xml&lang=tr&units=metric&appid=" + api; ;
-            XDocument document = XDocument.Load(connection);
-            ViewBag.v5 = document.Descendants("temperature").ElementAt(0).Attribute("value").Value;
+            // Anahtar koda yazılmaz: user-secrets / ortam değişkeni ile "OpenWeather:ApiKey" verilir
+            string api = _configuration["OpenWeather:ApiKey"];
+            string city = _configuration["OpenWeather:City"] ?? "Ankara";
+            string connection = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&mode=xml&lang=tr&units=metric&appid=" + api;
+            try
+            {
+                if (string.IsNullOrEmpty(api))
+                {
+                    throw new InvalidOperationException("OpenWeather:ApiKey ayarlanmamış");
+                }
+                XDocument document = XDocument.Load(connection);
+                ViewBag.v5 = document.Descendants("temperature").ElementAt(0).Attribute("value").Value;
+            }
+            catch
+            {
+                ViewBag.v5 = "-";
+            }
 
             //Statistics
             Context context = new Context();
@@ -41,7 +56,6 @@ namespace Core_Proje.Areas.Writer.Controllers
             ViewBag.v4 =context.Skills.Count();
             return View();
         }
-        ////https://api.openweathermap.org/data/2.5/weather?q=Ankara&mode=xml&lang=tr&units=metric&appid=682cce73042cf7c8adc013d65c5f9b08
 
 
     }

@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using Microsoft.AspNetCore.Authorization;
+using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using DataAccessLayer.Migrations;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Core_Proje.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PortfolioController : Controller
     {
         PortfolioManager _portfolioManager = new PortfolioManager(new EfPortfolioDal());
@@ -69,6 +71,14 @@ namespace Core_Proje.Controllers
         {
             PortfolioValidator validations = new PortfolioValidator();
             ValidationResult result = validations.Validate(portfolio);
+            if (!result.IsValid)
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(portfolio);
+            }
             _portfolioManager.TUpdate(portfolio);
             return RedirectToAction("Index");
         }

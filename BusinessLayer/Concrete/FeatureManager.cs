@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public List<Feature> TGetListByFilter(string p)
         {
-            throw new NotImplementedException();
+            return _featureDal.GetbyFilter(x => x.Name.Contains(p));
         }
 
         public void TUpdate(Feature t)

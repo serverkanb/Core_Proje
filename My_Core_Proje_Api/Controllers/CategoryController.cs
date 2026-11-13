@@ -37,13 +37,13 @@ namespace My_Core_Proje_Api.Controllers
             }
         }
         [HttpPost]
-        public IActionResult CategoryAdd(CategoryController p)
+        public IActionResult CategoryAdd(Category p)
         { 
             _context.Add(p);
             _context.SaveChanges();
-            return Created("",p);
+            return Created($"/api/Category/{p.CategoryId}", p);
         }
-        [HttpPut]
+        [HttpDelete("{id}")]
         public IActionResult CategoryDelete(int id)
         {
             var value = _context.Categories.Find(id);

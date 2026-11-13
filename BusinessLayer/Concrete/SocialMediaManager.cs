@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public List<SocialMedia> TGetListByFilter(string p)
         {
-            throw new NotImplementedException();
+            return _socialMediaDal.GetbyFilter(x => x.Name.Contains(p));
         }
 
         public void TUpdate(SocialMedia t)

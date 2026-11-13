@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace My_Core_Proje_.Areas.Writer.Controllers
 {
     [Area("Writer")]
- 
+    [Authorize]
     [Route("Writer/Message")]
     public class MessageController : Controller
     {
@@ -21,9 +21,10 @@ namespace My_Core_Proje_.Areas.Writer.Controllers
             _usermanager = usermanager;
         }
 
+        [Route("Index")]
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("ReceiverMessage");
         }
         [Route("")]
         [Route("ReceiveMessage")]
@@ -34,7 +35,6 @@ namespace My_Core_Proje_.Areas.Writer.Controllers
             var messageList = writerMessageManager.TGetListReceiverMessage(p);
             return View(messageList);
         }
-        [Route("")]
         [Route("SenderMessage")]
         public async Task<IActionResult> SenderMessage(string p)
         {
@@ -56,7 +56,6 @@ namespace My_Core_Proje_.Areas.Writer.Controllers
             return View(writerMessage);
         }
         [HttpGet]
-        [Route("")]
         [Route("SendMessage")]
         public IActionResult SendMessage()
         {
@@ -64,7 +63,6 @@ namespace My_Core_Proje_.Areas.Writer.Controllers
         }
 
         [HttpPost]
-        [Route("")]
         [Route("SendMessage")]
         public async Task<IActionResult> SendMessage(WriterMessage p)
         {

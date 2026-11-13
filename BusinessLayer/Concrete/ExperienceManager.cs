@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public List<Experience> TGetListByFilter(string p)
         {
-            throw new NotImplementedException();
+            return _experienceDal.GetbyFilter(x => x.Name.Contains(p));
         }
 
         public void TUpdate(Experience t)

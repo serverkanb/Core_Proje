@@ -1,0 +1,33 @@
+@model EntityLayer.Concrete.Annoucement
+@{
+    ViewData["Title"] = "EditAnnoucement";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="card-header border-0">
+    <h3>Duyuru Düzenleme Sayfası</h3>
+    <br />
+</div>
+
+<form class="form-control" method="post">
+    <input type="hidden" name="AnnoucementId" value="@Model.AnnoucementId" />
+
+    <label>Başlık</label>
+    <input type="text" name="Title" class="form-control" value="@Model.Title" />
+    <br />
+
+    <label>Tarih</label>
+    <input type="text" name="Date" class="form-control" value="@Model.Date" />
+    <br />
+
+    <label>Durum</label>
+    <input type="text" name="Status" class="form-control" value="@Model.Status" />
+    <br />
+
+    <label>İçerik</label>
+    <textarea name="Content" rows="6" class="form-control">@Model.Content</textarea>
+    <br />
+
+    <button type="submit" class="btn btn-success">Güncelle</button>
+    <a href="/Annoucement/Index" class="btn btn-secondary">Geri Dön</a>
+</form>

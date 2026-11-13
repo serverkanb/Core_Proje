@@ -10,11 +10,12 @@ namespace Core_Proje.Areas.Writer.Models
         public string SurName { get; set; }
         [Required(ErrorMessage ="Lütfen Kullanıcı Adı Giriniz")]
         public string UserName { get; set; }
-        [Required(ErrorMessage = "Lütfen Şifreyi  Giriniz")]
-        public string ImageUrl { get; set; }
         [Required(ErrorMessage = "Lütfen ResimUrl Giriniz")]
+        public string ImageUrl { get; set; }
+        [Required(ErrorMessage = "Lütfen Şifreyi Giriniz")]
         public string Password { get; set; }
         [Required(ErrorMessage = "Lütfen Şifreyi tekrar Giriniz")]
+        [Compare("Password", ErrorMessage = "Şifreler uyuşmuyor")]
         public string ConfirmPassword { get; set; }
         [Required(ErrorMessage = "Lütfen Mailinizi Giriniz")]
         public string Mail { get; set; }

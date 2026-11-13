@@ -6,15 +6,53 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete
 {
     public class Context : IdentityDbContext<WriterUser,WriterRole,int>
     {
+        // Program.cs içinde appsettings.json'daki "ConnectionStrings:DefaultConnection" ile atanır.
+        // Projede "new Context()" ile oluşturulan yerler de bu değeri kullanır.
+        public static string? ConnectionString { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=LAPTOP-1IHFPICF;database=CoreProject;trusted_connection=true;multipleactiveresultsets=true;trustservercertificate=true");
+            if (!optionsBuilder.IsConfigured)
+            {
+                if (string.IsNullOrEmpty(ConnectionString))
+                {
+                    ConnectionString = ReadConnectionStringFromAppSettings();
+                }
+                if (string.IsNullOrEmpty(ConnectionString))
+                {
+                    throw new InvalidOperationException("Bağlantı dizesi bulunamadı. appsettings.json içinde ConnectionStrings:DefaultConnection değerini girin.");
+                }
+                optionsBuilder.UseSqlServer(ConnectionString);
+            }
+        }
+
+        // Program.cs çalışmadan oluşturulduğunda (ör. "dotnet ef" DataAccessLayer üzerinden çalıştırılırsa)
+        // web projesinin appsettings.json dosyasından okunur.
+        private static string? ReadConnectionStringFromAppSettings()
+        {
+            string[] candidates =
+            {
+                Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json"),
+                Path.Combine(Directory.GetCurrentDirectory(), "..", "Core_Proje", "appsettings.json")
+            };
+            foreach (var path in candidates)
+            {
+                if (!File.Exists(path)) continue;
+                using var doc = JsonDocument.Parse(File.ReadAllText(path), new JsonDocumentOptions { CommentHandling = JsonCommentHandling.Skip });
+                if (doc.RootElement.TryGetProperty("ConnectionStrings", out var cs) &&
+                    cs.TryGetProperty("DefaultConnection", out var value))
+                {
+                    return value.GetString();
+                }
+            }
+            return null;
         }
 
         public DbSet<Service> Services { get; set; }

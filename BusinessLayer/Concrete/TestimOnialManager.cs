@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public List<TestimOnial> TGetListByFilter(string p)
         {
-            throw new NotImplementedException();
+            return _testimonialDal.GetbyFilter(x => x.ClientName.Contains(p));
         }
 
         public void TUpdate(TestimOnial t)

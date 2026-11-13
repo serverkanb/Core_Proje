@@ -1,0 +1,80 @@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<h1>Yazarlar</h1>
+
+<div class="p-2">
+    <button type="button" id="btngetlist" class="btn btn-outline-primary">Yazarları Getir</button>
+</div>
+
+<div class="p-2" id="listuser">
+</div>
+
+<br />
+
+<div class="col-md-12">
+    <h5>Yazar Ekleme Paneli</h5>
+    <input type="text" class="form-control" id="inpname" placeholder="Ad" />
+    <br />
+    <input type="text" class="form-control" id="inpsurname" placeholder="Soyad" />
+    <br />
+    <input type="text" class="form-control" id="inpusername" placeholder="Kullanıcı Adı" />
+    <br />
+    <input type="email" class="form-control" id="inpmail" placeholder="Mail" />
+    <br />
+    <input type="text" class="form-control" id="inpimage" placeholder="Resim Url" />
+    <br />
+    <input type="password" class="form-control" id="inppassword" placeholder="Şifre" />
+    <br />
+    <button type="button" id="btnadd" class="btn btn-outline-info">Kaydet</button>
+</div>
+
+@section scripts
+{
+    <script>
+        function loadUsers() {
+            $.ajax({
+                dataType: "json",
+                type: "Get",
+                url: "/WriterUser/ListUser/",
+                success: function (funk) {
+                    let values = jQuery.parseJSON(funk);
+                    let htmlst = "<table class='table table-bordered'> <tr> <th> ID </th> <th> Ad Soyad </th> <th> Kullanıcı Adı </th> <th> Mail </th> </tr>";
+                    $.each(values, (index, value) => {
+                        htmlst += `<tr> <td>${value.Id}</td> <td>${value.Name} ${value.Surname}</td> <td>${value.UserName}</td> <td>${value.Email}</td> </tr>`;
+                    });
+                    htmlst += "</table>";
+                    $("#listuser").html(htmlst);
+                }
+            });
+        }
+
+        $("#btngetlist").click(loadUsers);
+
+        $("#btnadd").click(function () {
+            let values = {
+                Name: $("#inpname").val(),
+                Surname: $("#inpsurname").val(),
+                UserName: $("#inpusername").val(),
+                Email: $("#inpmail").val(),
+                ImageUrl: $("#inpimage").val(),
+                password: $("#inppassword").val()
+            };
+
+            $.ajax({
+                type: "Post",
+                url: "/WriterUser/AddUser/",
+                data: values,
+                success: function () {
+                    alert("Yazar başarılı bir şekilde eklendi");
+                    loadUsers();
+                },
+                error: function (xhr) {
+                    alert("Hata: " + xhr.responseText);
+                }
+            });
+        });
+    </script>
+}
